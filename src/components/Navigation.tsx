@@ -24,9 +24,16 @@ export default function SimpleBottomNavigation() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Box sx={{ width: 500 }}>
+			<Box>
 				<BottomNavigation
-					style={{ backgroundColor: '#176B87', color: '#EEEEEE', position: 'fixed', bottom: '0', width: '100%' }}
+					style={{
+						backgroundColor: '#176B87',
+						color: '#EEEEEE',
+						position: 'fixed',
+						bottom: '0',
+						left: '0',
+						width: '100%',
+					}}
 					showLabels
 					value={value}
 					onChange={(event, newValue) => {
