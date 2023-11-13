@@ -1,15 +1,12 @@
 import React from 'react'
 import classes from './Modal.module.css'
 
-interface DeleteTrainingModalProps {
+interface DeleteConfirmationModalProps {
 	handleCloseAddTrainingModal: () => void
 	handleDeleteTraining: () => void
 }
 
-const DeleteTrainingModal: React.FC<DeleteTrainingModalProps> = ({
-	handleCloseAddTrainingModal,
-	handleDeleteTraining,
-}) => {
+const DeleteTraining: React.FC<DeleteConfirmationModalProps> = ({ handleCloseAddTrainingModal, handleDeleteTraining }) => {
 	return (
 		<div className={classes.overlay} onClick={handleCloseAddTrainingModal}>
 			<div className={classes.modalContainer}>
@@ -37,4 +34,4 @@ const DeleteTrainingModal: React.FC<DeleteTrainingModalProps> = ({
 	)
 }
 
-export default DeleteTrainingModal
+export default DeleteTraining

@@ -5,6 +5,7 @@ import classes from './Dashboard.module.css'
 import DeleteSerieModal from './DeleteSerieModal'
 import AddSerieModal from './AddSerieModal'
 import SeriesList from './SeriesList'
+import EditSerieModal from './EditSeriesModal'
 
 interface SerieData {
 	id: number
@@ -21,6 +22,7 @@ const Excercise: React.FC = () => {
 
 	const [showAddSerieModal, setShowAddSerieModal] = useState(false)
 	const [showDeleteSerieModal, setShowDeleteSerieModal] = useState(false)
+	const [showEditSerieModal, setShowEditSerieModal] = useState(false)
 	const [selectedSerieId, setSelectedSerieId] = useState<number | null>(null)
 	const [newSerieName, setNewSerieName] = useState('')
 	const [newReps, setNewReps] = useState(0)
@@ -30,6 +32,18 @@ const Excercise: React.FC = () => {
 		if (!showAddSerieModal) {
 			setSelectedSerieId(id)
 			setShowDeleteSerieModal(true)
+			document.body.classList.add('modalOpen')
+		}
+	}
+	const handleEdit = (id: number) => {
+		const editingSerie = series.find(serie => serie.id === id)
+
+		if (editingSerie) {
+			setNewSerieName(editingSerie.name)
+			setNewReps(editingSerie.reps)
+			setNewWeight(editingSerie.weight)
+			setSelectedSerieId(id)
+			setShowEditSerieModal(true)
 			document.body.classList.add('modalOpen')
 		}
 	}
@@ -43,20 +57,24 @@ const Excercise: React.FC = () => {
 		setShowAddSerieModal(false)
 		document.body.classList.remove('modalOpen')
 	}
+	const handleCloseEditSerieModal = () => {
+		setShowEditSerieModal(false)
+		document.body.classList.remove('modalOpen')
+	}
 
 	const handleNewSerieChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewSerieName(e.target.value)
 	}
 
 	const handleRepsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const repsValue = parseInt(e.target.value, 10)
+		const repsValue = parseFloat(e.target.value)
 
 		if (!isNaN(repsValue)) {
 			setNewReps(repsValue)
 		}
 	}
 	const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const weightValue = parseInt(e.target.value, 10)
+		const weightValue = parseFloat(e.target.value)
 
 		if (!isNaN(weightValue)) {
 			setNewWeight(weightValue)
@@ -65,10 +83,21 @@ const Excercise: React.FC = () => {
 
 	const handleAddSerie = (e: React.FormEvent) => {
 		e.preventDefault()
-		if (newReps && newWeight) {
+		if (newReps && newWeight && newSerieName) {
 			const newSerie = { id: series.length + 1, name: newSerieName, reps: newReps, weight: newWeight }
 			setSeries([...series, newSerie])
 			handleCloseAddSerieModal()
+		}
+	}
+
+	const handleEditSerie = (e: React.FormEvent) => {
+		e.preventDefault()
+		if (newReps !== undefined && newWeight !== undefined && newSerieName !== '') {
+			const editedSeries = series.map(serie =>
+				serie.id === selectedSerieId ? { ...serie, name: newSerieName, reps: newReps, weight: newWeight } : serie
+			)
+			setSeries(editedSeries)
+			handleCloseEditSerieModal()
 		}
 	}
 
@@ -88,7 +117,7 @@ const Excercise: React.FC = () => {
 	return (
 		<div className={classes.dashboard}>
 			<h2 className={classes.title}>Serie</h2>
-			<SeriesList series={series} onDelete={handleDelete} />
+			<SeriesList series={series} onDelete={handleDelete} onEdit={handleEdit} />
 			<Fab className={classes.addButton}>
 				<AddIcon onClick={handleShowAddSerieModal} />
 			</Fab>
@@ -105,6 +134,18 @@ const Excercise: React.FC = () => {
 				<DeleteSerieModal
 					handleCloseAddSerieModal={handleCloseDeleteSerieModal}
 					handleDeleteSerie={handleDeleteTrainingConfirmed}
+				/>
+			)}
+			{showEditSerieModal && (
+				<EditSerieModal
+					handleCloseEditSerieModal={handleCloseEditSerieModal}
+					handleEditSerie={handleEditSerie}
+					handleNewSerieChange={handleNewSerieChange}
+					handleRepsChange={handleRepsChange}
+					handleWeightChange={handleWeightChange}
+					oldSerieName={newSerieName}
+					oldReps={newReps}
+					oldWeight={newWeight}
 				/>
 			)}
 		</div>

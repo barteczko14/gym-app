@@ -5,16 +5,18 @@ import Fab from '@mui/material/Fab'
 import classes from './TrainingList.module.css'
 
 interface TrainingData {
+	docId:string
 	id: number
 	name: string
 }
 
 interface TrainingListProps {
 	trainings: TrainingData[]
-	onDelete: (id: number) => void
+	onDelete: (id: number, docId:string) => void
 }
-
 const TrainingList: React.FC<TrainingListProps> = ({ trainings, onDelete }) => {
+	console.log(trainings);
+	
 	return (
 		<ul className={classes.ul}>
 			{trainings.map(training => (
@@ -23,7 +25,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ trainings, onDelete }) => {
 						{training.name}
 					</Link>
 					<Fab size='small' className={classes.removeButton}>
-						<RemoveIcon onClick={() => onDelete(training.id)} />
+						<RemoveIcon onClick={() => onDelete(training.id, training.docId)} />
 					</Fab>
 				</li>
 			))}

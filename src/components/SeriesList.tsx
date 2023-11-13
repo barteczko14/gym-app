@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import RemoveIcon from '@mui/icons-material/Remove'
+import EditIcon from '@mui/icons-material/Edit'
 import Fab from '@mui/material/Fab'
 import classes from './TrainingList.module.css'
 import { useParams } from 'react-router-dom'
 
 interface SerieData {
 	id: number
-	name: string,
+	name: string
 	reps: number
 	weight: number
 }
@@ -15,17 +15,19 @@ interface SerieData {
 interface SerieListProps {
 	series: SerieData[]
 	onDelete: (id: number) => void
+	onEdit: (id: number) => void
 }
 
-const ExcerciseList: React.FC<SerieListProps> = ({ series, onDelete }) => {
+const ExcerciseList: React.FC<SerieListProps> = ({ series, onDelete, onEdit }) => {
 	const params = useParams()
 	return (
 		<ul className={classes.ul}>
 			{series.map(serie => (
 				<li className={classes.li} key={serie.id}>
-					<Link className={classes.link} to={`/trening/${params.treningId}/excercise/${serie.id}`}>
-						{serie.name} Waga: {serie.weight} Liczba powtórzeń:  {serie.reps}
-					</Link>
+					{serie.name} Waga: {serie.weight} Liczba powtórzeń: {serie.reps}
+					<Fab size='small' className={classes.removeButton}>
+						<EditIcon onClick={() => onEdit(serie.id)} />
+					</Fab>
 					<Fab size='small' className={classes.removeButton}>
 						<RemoveIcon onClick={() => onDelete(serie.id)} />
 					</Fab>
