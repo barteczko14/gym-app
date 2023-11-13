@@ -1,0 +1,19 @@
+.dashboard {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+}
+
+.addButton {
+	position: absolute !important;
+	bottom: 100px;
+	right: 50px;
+}
+
+.title {
+	margin: 0;
+	padding: 40px !important;
+	text-align: center;
+}
+
+

@@ -7,13 +7,11 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import FitnessCenterOutlinedIcon from '@mui/icons-material/FitnessCenterOutlined'
 import ScaleOutlinedIcon from '@mui/icons-material/ScaleOutlined'
 import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined'
+import classes from './Navigation.module.css'
 
 const theme = createTheme({
 	palette: {
 		primary: {
-			main: '#EEEEEE',
-		},
-		secondary: {
 			main: '#EEEEEE',
 		},
 	},
@@ -26,14 +24,7 @@ export default function SimpleBottomNavigation() {
 		<ThemeProvider theme={theme}>
 			<Box>
 				<BottomNavigation
-					style={{
-						backgroundColor: '#176B87',
-						color: '#EEEEEE',
-						position: 'fixed',
-						bottom: '0',
-						left: '0',
-						width: '100%',
-					}}
+					className={classes.navigation}
 					showLabels
 					value={value}
 					onChange={(event, newValue) => {

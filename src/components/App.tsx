@@ -4,7 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from '../pages/Root'
 import Measures from './Measures'
 import ExcercisesBase from './ExcercisesBase'
+import Dashboard from './Dashboard'
 import Training from './Training'
+import Excercise from './Excercise'
 
 const App = () => {
 	const router = createBrowserRouter([
@@ -12,17 +14,25 @@ const App = () => {
 			path: '/',
 			element: <RootLayout />,
 			children: [
-				{ index: true, element: <Training /> },
+				{ index: true, element: <Dashboard /> },
 				{ path: 'pomiary', element: <Measures /> },
 				{ path: 'baza', element: <ExcercisesBase /> },
+				{
+					path: 'trening/:treningId',
+					element: <Training />,
+				},
+				{
+					path: 'trening/:treningId/excercise/:excerciseId',
+					element: <Excercise />,
+				},
 			],
 		},
 	])
 
 	return (
 		<>
-			<Box style={{ background: '#176B87' }}>
-				<Container size='1'>
+			<Box>
+				<Container size='4'>
 					<RouterProvider router={router}></RouterProvider>
 				</Container>
 			</Box>

@@ -1,0 +1,22 @@
+.li {
+	list-style-type: none;
+	margin-bottom: 8px;
+	background-color: #f9f9f9;
+	padding: 12px 40px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-decoration: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.ul {
+	padding: 0 20px;
+}
+.link {
+	text-decoration: none;
+	color: black;
+}
+.removeButton {
+	margin-left: 10px !important;
+}
