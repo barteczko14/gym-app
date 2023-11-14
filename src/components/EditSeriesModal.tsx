@@ -63,7 +63,7 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 							<input
 								id='serieReps'
 								className={classes.modalInput}
-								type='text'
+								type='number'
 								placeholder='Liczba powtórzeń'
 								value={editedReps}
 								onChange={e => {
@@ -78,7 +78,7 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 							<input
 								id='serieWeight'
 								className={classes.modalInput}
-								type='text'
+								type='number'
 								placeholder='Waga'
 								value={editedWeight}
 								onChange={e => {

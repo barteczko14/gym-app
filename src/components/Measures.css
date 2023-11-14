@@ -1,0 +1,51 @@
+/* Measures.css */
+
+.measures-container {
+	max-width: 800px;
+	margin: 50px auto;
+	padding: 20px;
+	background-color: #f4f4f4;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.measures-header {
+    text-align: center;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.chart-container {
+	margin-top: 20px;
+}
+
+.new-weight-container {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.new-weight-label {
+	margin-right: 10px;
+}
+
+.new-weight-input {
+	padding: 8px;
+	font-size: 16px;
+}
+
+.add-weight-button {
+	padding: 8px 16px;
+	font-size: 16px;
+	background-color: #4caf50;
+	color: #fff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.add-weight-button:hover {
+	background-color: #45a049;
+}

@@ -5,18 +5,16 @@ import Fab from '@mui/material/Fab'
 import classes from './TrainingList.module.css'
 
 interface TrainingData {
-	docId:string
+	docId: string
 	id: number
 	name: string
 }
 
 interface TrainingListProps {
 	trainings: TrainingData[]
-	onDelete: (id: number, docId:string) => void
+	onDelete: (id: number, docId: string) => void
 }
 const TrainingList: React.FC<TrainingListProps> = ({ trainings, onDelete }) => {
-	console.log(trainings);
-	
 	return (
 		<ul className={classes.ul}>
 			{trainings.map(training => (

@@ -10,12 +10,15 @@ interface SerieData {
 	name: string
 	reps: number
 	weight: number
+	docId:string
+	trainingId: number
+	excerciseId: number
 }
 
 interface SerieListProps {
 	series: SerieData[]
-	onDelete: (id: number) => void
-	onEdit: (id: number) => void
+	onDelete: (id: number, docId: string) => void
+	onEdit: (id: number, docId: string) => void
 }
 
 const ExcerciseList: React.FC<SerieListProps> = ({ series, onDelete, onEdit }) => {
@@ -26,10 +29,10 @@ const ExcerciseList: React.FC<SerieListProps> = ({ series, onDelete, onEdit }) =
 				<li className={classes.li} key={serie.id}>
 					{serie.name} Waga: {serie.weight} Liczba powtórzeń: {serie.reps}
 					<Fab size='small' className={classes.removeButton}>
-						<EditIcon onClick={() => onEdit(serie.id)} />
+						<EditIcon onClick={() => onEdit(serie.id, serie.docId)} />
 					</Fab>
 					<Fab size='small' className={classes.removeButton}>
-						<RemoveIcon onClick={() => onDelete(serie.id)} />
+						<RemoveIcon onClick={() => onDelete(serie.id, serie.docId)} />
 					</Fab>
 				</li>
 			))}

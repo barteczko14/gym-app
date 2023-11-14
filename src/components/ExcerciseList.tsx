@@ -6,13 +6,15 @@ import classes from './TrainingList.module.css'
 import { useParams } from 'react-router-dom'
 
 interface ExcerciseData {
+	docId: string
+	trainingId: number
 	id: number
 	name: string
 }
 
 interface ExcerciseListProps {
 	excercises: ExcerciseData[]
-	onDelete: (id: number) => void
+	onDelete: (id: number, docId: string) => void
 }
 
 const ExcerciseList: React.FC<ExcerciseListProps> = ({ excercises, onDelete }) => {
@@ -25,7 +27,7 @@ const ExcerciseList: React.FC<ExcerciseListProps> = ({ excercises, onDelete }) =
 						{excercise.name}
 					</Link>
 					<Fab size='small' className={classes.removeButton}>
-						<RemoveIcon onClick={() => onDelete(excercise.id)} />
+						<RemoveIcon onClick={() => onDelete(excercise.id, excercise.docId)} />
 					</Fab>
 				</li>
 			))}

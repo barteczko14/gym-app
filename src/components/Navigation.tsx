@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import BottomNavigation from '@mui/material/BottomNavigation'
@@ -18,7 +18,18 @@ const theme = createTheme({
 })
 
 export default function SimpleBottomNavigation() {
+	const location = useLocation()
 	const [value, setValue] = React.useState(0)
+
+	React.useEffect(() => {
+		const pathToValue: Record<string, number> = {
+			'/': 0,
+			'/pomiary': 1,
+			'/baza': 2,
+		}
+
+		setValue(pathToValue[location.pathname] || 0)
+	}, [location.pathname])
 
 	return (
 		<ThemeProvider theme={theme}>

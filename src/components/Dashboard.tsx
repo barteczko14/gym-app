@@ -32,27 +32,25 @@ const Dashboard = () => {
 	const [selectedDocumentId, setSelectedDocumentId] = useState<string>('')
 	const [newTrainingName, setNewTrainingName] = useState('')
 
-	const collectionRef = collection(db, 'trenings')
+	const collectionRef = collection(db, 'trainings')
 
 	useEffect(() => {
-		const getTrenings = async () => {
+		const getTrainings = async () => {
 			const q = query(collectionRef)
 			try {
 				const treningsSnapshot = await getDocs(q)
-				const treningsData = treningsSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
-					...doc.data(),
-					docId:doc.id,
+				const trainingsData = treningsSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
+					docId: doc.id,
 					id: doc.data().id,
 					name: doc.data().name,
 				})) as TrainingData[]
-
-				setTrainings(treningsData)
+				setTrainings(trainingsData)
 			} catch (err) {
 				console.error('Błąd podczas pobierania treningów:', err)
 			}
 		}
 
-		getTrenings()
+		getTrainings()
 	}, [])
 
 	const handleDelete = (id: number, docId: string) => {
@@ -83,9 +81,8 @@ const Dashboard = () => {
 		if (newTrainingName) {
 			try {
 				const rndInt = Math.floor(Math.random() * 10000) + 1
-				console.log(rndInt)
 				const newTraining: TrainingData = {
-					docId:'',
+					docId: '',
 					id: rndInt,
 					name: newTrainingName,
 				}
@@ -108,11 +105,10 @@ const Dashboard = () => {
 	}
 
 	const handleDeleteTrainingConfirmed = async () => {
-		console.log(selectedTrainingId)
 		if (selectedTrainingId !== null) {
 			setTrainings(trainings.filter(training => training.id !== selectedTrainingId))
 			try {
-				const documentRef = doc(db, 'trenings', selectedDocumentId);
+				const documentRef = doc(db, 'trainings', selectedDocumentId)
 				await deleteDoc(documentRef)
 			} catch (err) {
 				console.log(err)
