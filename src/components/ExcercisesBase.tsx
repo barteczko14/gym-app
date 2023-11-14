@@ -8,15 +8,16 @@ interface Exercise {
 }
 
 interface ExcercisesBaseProps {
-	excercises: Exercise[];
-  }
+	excercises: Exercise[]
+}
 
 const ExcercisesBase: React.FC<ExcercisesBaseProps> = ({ excercises }) => {
 	return (
 		<div className='excercises-base'>
+			<h2 className='title'>Baza ćwiczeń</h2>
 			<ol style={{ '--length': excercises.length } as React.CSSProperties} role='list'>
 				{excercises.map((exercise, index) => (
-					<li key={exercise.id} style={{ '--i': index + 1 } as React.CSSProperties}>
+					<li className='excercises-base-li' key={exercise.id} style={{ '--i': index + 1 } as React.CSSProperties}>
 						<h3>{exercise.name}</h3>
 						<p>{exercise.description}</p>
 					</li>

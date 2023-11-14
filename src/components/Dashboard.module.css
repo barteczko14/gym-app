@@ -12,8 +12,11 @@
 
 .title {
 	margin: 0;
-	padding: 40px !important;
+	padding: 20px !important;
 	text-align: center;
 }
 
-
+.backBtn {
+	color: #000;
+	margin: 20px;
+}

@@ -206,11 +206,9 @@ const Excercise: React.FC = () => {
 	return (
 		<div className={classes.dashboard}>
 			<h2 className={classes.title}>Serie</h2>
-			<Fab>
-				<Link className={classes.link} to={`/trening/${params.treningId}`}>
-					<ArrowBackIcon/>
+				<Link className={classes.backBtn} to={`/trening/${params.treningId}`}>
+				<ArrowBackIcon fontSize="large"/>
 				</Link>
-			</Fab>
 			<SeriesList series={series} onDelete={handleDelete} onEdit={handleEdit} />
 			<Fab className={classes.addButton}>
 				<AddIcon onClick={handleShowAddSerieModal} />

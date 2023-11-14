@@ -63,7 +63,7 @@
 }
 
 .modalButton {
-	background-color: #176b87;
+	background-color: #0081CF;
 	color: #fff;
 	border: none;
 	padding: 8px 16px;
@@ -75,5 +75,5 @@
 
 .modalButton:last-child {
 	margin-left: 14px;
-	background-color: #64ccc5;
+	background-color: #008E9B;
 }

@@ -132,11 +132,9 @@ const Training = () => {
 	return (
 		<div className={classes.dashboard}>
 			<h2 className={classes.title}>Lista Ćwiczeń</h2>
-			<Fab>
-				<Link className={classes.link} to={`/`}>
-					<ArrowBackIcon/>
-				</Link>
-			</Fab>
+			<Link className={classes.backBtn} to={`/`}>
+				<ArrowBackIcon fontSize="large"/>
+			</Link>
 			<ExcerciseList excercises={excercises} onDelete={handleDelete} />
 			<Fab className={classes.addButton}>
 				<AddIcon onClick={handleShowAddExcerciseModal} />

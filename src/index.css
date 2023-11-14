@@ -4,7 +4,7 @@ body {
 		'Droid Sans', 'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: #176b87 !important;
+	background-image: linear-gradient(to right top, #0081cf, #0085c8, #0089bf, #008bb5, #008daa, #008ea3, #008f9c, #008f94, #008f8e, #008f88, #008f81, #008f7a);
 }
 
 code {

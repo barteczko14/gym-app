@@ -3,13 +3,13 @@ export const excercises = [
 		id: 1,
 		name: 'Przysiady',
 		description:
-			'Stań w rozkroku, stopy szerokość ramion. Opuszczaj ciało, unosząc biodra do tyłu i zginać kolana, aż uda będą równoległe do podłoża. Wróć do pozycji wyjściowej.',
+			'Stań w rozkroku, ustaw stopy na szerokość ramion. Opuszczaj ciało, unosząc biodra do tyłu i zginając kolana, aż uda będą równoległe do podłoża. Wróć do pozycji wyjściowej.',
 	},
 	{
 		id: 2,
 		name: 'Wyciskanie sztangi leżąc',
 		description:
-			'Leż na płaskiej ławce i unieś sztangę z półki. Opuszczaj sztangę do klatki piersiowej, a następnie pchnij ją do góry.',
+			'Leż na płaskiej ławce i unieś sztangę ze stojaków. Opuszczaj sztangę do klatki piersiowej, a następnie pchnij ją do góry.',
 	},
 	{
 		id: 3,
@@ -26,7 +26,7 @@ export const excercises = [
 	{
 		id: 5,
 		name: 'Podciąganie na drążku',
-		description: 'Wisi na drążku, unieś ciało, napinając mięśnie pleców. Podciągnij się, unosząc korpus do drążka.',
+		description: 'Wiś na drążku, unieś ciało, napinając mięśnie pleców. Podciągnij się, unosząc korpus do drążka.',
 	},
 	{
 		id: 6,
@@ -73,7 +73,7 @@ export const excercises = [
 	{
 		id: 14,
 		name: 'Dipy',
-		description: 'Podpórz się na poręczach i opuść ciało, zginając ramiona w łokciach, a następnie pchnij się do góry.',
+		description: 'Podpierając się na poręczach opuść ciało, zginając ramiona w łokciach, a następnie pchnij się do góry.',
 	},
 	{
 		id: 15,
@@ -88,17 +88,17 @@ export const excercises = [
 	{
 		id: 17,
 		name: 'Unoszenie nóg w zwisie',
-		description: 'Wisi na drążku, unosząc nogi do góry, napinając mięśnie brzucha.',
+		description: 'Wiś na drążku, unosząc nogi do góry, napinając mięśnie brzucha.',
 	},
 	{
 		id: 18,
 		name: 'Rozpiętki z hantlami',
-		description: 'Leż na ławce i unos hantle na boki, napinając mięśnie klatki piersiowej.',
+		description: 'Leż na ławce i unoś hantle na boki, napinając mięśnie klatki piersiowej.',
 	},
 	{
 		id: 19,
 		name: 'Wznoszenie nóg w leżeniu na ławce skośnej',
-		description: 'Leż na ławce skośnej i unos nogi do góry, napinając mięśnie brzucha.',
+		description: 'Leż na ławce skośnej i unoś nogi do góry, napinając mięśnie brzucha.',
 	},
 	{
 		id: 20,

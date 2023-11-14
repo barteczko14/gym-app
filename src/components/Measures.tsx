@@ -37,10 +37,10 @@ const Measures: React.FC = () => {
 				const seriesSnapshot = await getDocs(q)
 
 				const weightsData = seriesSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
-						id: doc.id,
-						date: doc.data().date,
-						weight: doc.data().weight,
-					})) as WeightData[]
+					id: doc.id,
+					date: doc.data().date,
+					weight: doc.data().weight,
+				})) as WeightData[]
 
 				setWeightData(weightsData)
 			} catch (err) {
@@ -64,36 +64,38 @@ const Measures: React.FC = () => {
 	}
 
 	return (
-		<div className='measures-container'>
-			<h1 className='measures-header'>Pomiary</h1>
-			<ResponsiveContainer className='chart-container' width='95%' height={400}>
-				<LineChart data={weightData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
-					<CartesianGrid strokeDasharray='3 3' />
-					<XAxis
-						dataKey='date'
+		<div className='container'>
+			<h2 className='title'>Pomiary</h2>
+			<div className='measures-container'>
+				<ResponsiveContainer className='chart-container' width='95%' height={300}>
+					<LineChart data={weightData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+						<CartesianGrid strokeDasharray='3 3' />
+						<XAxis
+							dataKey='date'
+							type='number'
+							domain={['auto', 'auto']}
+							tickFormatter={unixTime => new Date(unixTime).toLocaleDateString()}
+						/>
+						<YAxis type='number' domain={['auto', 'auto']} />
+						<Tooltip />
+						<ReferenceLine y={0} stroke='#000' />
+						<Line type='monotone' dataKey='weight' stroke='#8884d8' activeDot={{ r: 8 }} />
+					</LineChart>
+				</ResponsiveContainer>
+				<div className='new-weight-container'>
+					<label className='new-weight-label'>Nowa Waga:</label>
+					<input
 						type='number'
-						domain={['auto', 'auto']}
-						tickFormatter={unixTime => new Date(unixTime).toLocaleDateString()}
+						value={newWeight}
+						onChange={e => setNewWeight(e.target.value)}
+						className='new-weight-input'
 					/>
-					<YAxis type='number' domain={['auto', 'auto']} />
-					<Tooltip />
-					<ReferenceLine y={0} stroke='#000' />
-					<Line type='monotone' dataKey='weight' stroke='#8884d8' activeDot={{ r: 8 }} />
-				</LineChart>
-			</ResponsiveContainer>
-			<div className='new-weight-container'>
-				<label className='new-weight-label'>Nowa Waga:</label>
-				<input
-					type='number'
-					value={newWeight}
-					onChange={e => setNewWeight(e.target.value)}
-					className='new-weight-input'
-				/>
-				<label className='new-weight-label'>Nowa Data:</label>
-				<input type='date' value={newDate} onChange={e => setNewDate(e.target.value)} className='new-weight-input' />
-				<button onClick={handleAddWeight} className='add-weight-button'>
-					Dodaj Wagę
-				</button>
+					<label className='new-weight-label'>Nowa Data:</label>
+					<input type='date' value={newDate} onChange={e => setNewDate(e.target.value)} className='new-weight-input' />
+					<button onClick={handleAddWeight} className='add-weight-button'>
+						Dodaj Wagę
+					</button>
+				</div>
 			</div>
 		</div>
 	)
