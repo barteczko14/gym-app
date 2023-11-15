@@ -64,7 +64,7 @@ const Measures: React.FC = () => {
 		<div className='container'>
 			<h2 className='title'>Pomiary</h2>
 			<div className='measures-container'>
-				<ResponsiveContainer className='chart-container' width='95%' height={300}>
+				<ResponsiveContainer className='chart-container' width='95%' height={280}>
 					<LineChart data={weightData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
 						<CartesianGrid strokeDasharray='3 3' />
 						<XAxis
