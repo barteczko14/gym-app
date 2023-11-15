@@ -16,10 +16,6 @@ const AddSerieModal: React.FC<AddSerieModalProps> = ({
 	handleRepsChange,
 	handleWeightChange,
 }) => {
-	const handleSave = (e: React.FormEvent) => {
-		e.preventDefault()
-	}
-
 	return (
 		<div className={classes.overlay}>
 			<div className={classes.modalContainer}>
@@ -27,21 +23,22 @@ const AddSerieModal: React.FC<AddSerieModalProps> = ({
 					<div className={classes.modalTitle}>
 						<h5>Dodaj serię</h5>
 					</div>
-					<form onSubmit={handleSave}>
+					<form>
 						<div>
 							<input className={classes.modalInput} type='text' placeholder='Nazwa' onChange={handleNewSerieChange} />
 						</div>
 						<div>
-							<input className={classes.modalInput} type='number' placeholder='Waga' onChange={handleRepsChange} />
+							<input className={classes.modalInput} type='number' placeholder='Waga' onChange={handleWeightChange} />
 						</div>
 						<div>
 							<input
 								className={classes.modalInput}
 								type='number'
 								placeholder='Liczba powtórzeń'
-								onChange={handleWeightChange}
+								onChange={handleRepsChange}
 							/>
 						</div>
+
 						<div className={classes.modalButtonGroup}>
 							<button className={classes.modalButton} onClick={handleCloseAddSerieModal} type='button'>
 								Zamknij

@@ -59,21 +59,6 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 							/>
 						</div>
 						<div>
-							<label htmlFor='serieReps'>Liczba powtórzeń:</label>
-							<input
-								id='serieReps'
-								className={classes.modalInput}
-								type='number'
-								placeholder='Liczba powtórzeń'
-								value={editedReps}
-								onChange={e => {
-									const value = e.target.value
-									setEditedReps(e.target.value.replace(/,/g, '.'))
-									handleRepsChange(e)
-								}}
-							/>
-						</div>
-						<div>
 							<label htmlFor='serieWeight'>Waga:</label>
 							<input
 								id='serieWeight'
@@ -88,6 +73,22 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 								}}
 							/>
 						</div>
+						<div>
+							<label htmlFor='serieReps'>Liczba powtórzeń:</label>
+							<input
+								id='serieReps'
+								className={classes.modalInput}
+								type='number'
+								placeholder='Liczba powtórzeń'
+								value={editedReps}
+								onChange={e => {
+									const value = e.target.value
+									setEditedReps(e.target.value.replace(/,/g, '.'))
+									handleRepsChange(e)
+								}}
+							/>
+						</div>
+
 						<div className={classes.modalButtonGroup}>
 							<button className={classes.modalButton} onClick={handleCloseEditSerieModal} type='button'>
 								Zamknij

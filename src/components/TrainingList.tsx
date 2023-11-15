@@ -19,7 +19,7 @@ const TrainingList: React.FC<TrainingListProps> = ({ trainings, onDelete }) => {
 		<ul className={classes.ul}>
 			{trainings.map(training => (
 				<li className={classes.li} key={training.id}>
-					<Link className={classes.link} to={`/trening/${training.id}`}>
+					<Link className={classes.link} to={`/training/${training.id}`}>
 						{training.name}
 					</Link>
 					<Fab size='small' className={classes.removeButton}>

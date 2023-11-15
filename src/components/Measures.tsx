@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Measures.css'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import {
@@ -9,10 +9,7 @@ import {
 	orderBy,
 	limit,
 	DocumentData,
-	doc,
 	QueryDocumentSnapshot,
-	deleteDoc,
-	updateDoc,
 } from 'firebase/firestore'
 import { db } from '../firebase'
 

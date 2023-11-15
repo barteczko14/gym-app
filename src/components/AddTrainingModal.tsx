@@ -14,10 +14,6 @@ const AddTrainingModal: React.FC<AddTrainingModalProps> = ({
 	handleInputChange,
 	newTrainingName,
 }) => {
-	const handleSave = (e: React.FormEvent) => {
-		e.preventDefault()
-	}
-
 	return (
 		<div className={classes.overlay}>
 			<div className={classes.modalContainer}>
@@ -25,7 +21,7 @@ const AddTrainingModal: React.FC<AddTrainingModalProps> = ({
 					<div className={classes.modalTitle}>
 						<h5>Dodaj Trening</h5>
 					</div>
-					<form onSubmit={handleSave}>
+					<form>
 						<div>
 							<input
 								className={classes.modalInput}

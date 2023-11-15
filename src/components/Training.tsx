@@ -53,12 +53,13 @@ const Training = () => {
 					})) as ExcerciseData[]
 
 				setExcercises(excercisesData)
+				
 			} catch (err) {
 				console.error('Błąd podczas pobierania ćwiczeń:', err)
 			}
 		}
 
-		const trainingId = Number(params.treningId)
+		const trainingId = Number(params.trainingId)
 		getExcercises(trainingId)
 	}, [])
 
@@ -99,7 +100,7 @@ const Training = () => {
 				setExcercises([...excercises, newExcercise])
 				await addDoc(collectionRef, {
 					id: rndInt,
-					trainingId: Number(params.treningId),
+					trainingId: Number(params.trainingId),
 					name: newExcerciseName,
 				})
 				setNewExcerciseName('')

@@ -18,7 +18,8 @@ import {
 	doc,
 	QueryDocumentSnapshot,
 	deleteDoc,
-	updateDoc
+	updateDoc,
+	orderBy
 } from 'firebase/firestore'
 
 import { db } from '../firebase'
@@ -49,7 +50,7 @@ const Excercise: React.FC = () => {
 	useEffect(() => {
 		const getSeries = async (trainingId: number, excerciseId: number) => {
 			try {
-				const q = query(collectionRef)
+				const q = query(collectionRef,orderBy('name', 'asc'))
 				const seriesSnapshot = await getDocs(q)
 
 				const seriesData = seriesSnapshot.docs
@@ -68,7 +69,7 @@ const Excercise: React.FC = () => {
 			}
 		}
 
-		const trainingId = Number(params.treningId)
+		const trainingId = Number(params.trainingId)
 		const excerciseId = Number(params.excerciseId)
 		getSeries(trainingId, excerciseId)
 	}, [])
@@ -94,7 +95,7 @@ const Excercise: React.FC = () => {
 			document.body.classList.add('modalOpen')
 		}
 	}
-	  
+
 	const handleShowAddSerieModal = () => {
 		setShowAddSerieModal(true)
 		document.body.classList.add('modalOpen')
@@ -145,7 +146,7 @@ const Excercise: React.FC = () => {
 				setSeries([...series, newSerie])
 				await addDoc(collectionRef, {
 					id: rndInt,
-					trainingId: Number(params.treningId),
+					trainingId: Number(params.trainingId),
 					excerciseId: Number(params.excerciseId),
 					name: newSerieName,
 					reps: newReps,
@@ -160,29 +161,26 @@ const Excercise: React.FC = () => {
 	}
 
 	const handleEditSerie = async (e: React.FormEvent) => {
-		e.preventDefault();
+		e.preventDefault()
 		if (newReps !== undefined && newWeight !== undefined && newSerieName !== '') {
-		  try {
-			const editedSeries = series.map((serie) =>
-			  serie.id === selectedSerieId ? { ...serie, name: newSerieName, reps: newReps, weight: newWeight } : serie
-			);
-			setSeries(editedSeries);
-	  
-			const documentRef = doc(collectionRef, selectedDocumentId);
-			await updateDoc(documentRef, {
-			  name: newSerieName,
-			  reps: newReps,
-			  weight: newWeight,
-			});
-	  
-			handleCloseEditSerieModal();
-		  } catch (error) {
-			console.error('Błąd podczas edycji serii:', error);
-		  }
+			try {
+				const editedSeries = series.map(serie =>
+					serie.id === selectedSerieId ? { ...serie, name: newSerieName, reps: newReps, weight: newWeight } : serie
+				)
+				setSeries(editedSeries)
+
+				const documentRef = doc(collectionRef, selectedDocumentId)
+				await updateDoc(documentRef, {
+					name: newSerieName,
+					reps: newReps,
+					weight: newWeight,
+				})
+			} catch (error) {
+				console.error('Błąd podczas edycji serii:', error)
+			}
 		}
-	  };
-	  
-	  
+		handleCloseEditSerieModal()
+	}
 
 	const handleCloseDeleteSerieModal = () => {
 		setShowDeleteSerieModal(false)
@@ -206,9 +204,9 @@ const Excercise: React.FC = () => {
 	return (
 		<div className={classes.dashboard}>
 			<h2 className={classes.title}>Serie</h2>
-				<Link className={classes.backBtn} to={`/trening/${params.treningId}`}>
-				<ArrowBackIcon fontSize="large"/>
-				</Link>
+			<Link className={classes.backBtn} to={`/training/${params.trainingId}`}>
+				<ArrowBackIcon fontSize='large' />
+			</Link>
 			<SeriesList series={series} onDelete={handleDelete} onEdit={handleEdit} />
 			<Fab className={classes.addButton}>
 				<AddIcon onClick={handleShowAddSerieModal} />

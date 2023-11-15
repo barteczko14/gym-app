@@ -14,6 +14,7 @@ import {
 	doc,
 	QueryDocumentSnapshot,
 	deleteDoc,
+	orderBy
 } from 'firebase/firestore'
 
 import { db } from '../firebase'
@@ -36,10 +37,10 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		const getTrainings = async () => {
-			const q = query(collectionRef)
+			const q = query(collectionRef,orderBy('name', 'asc'))
 			try {
-				const treningsSnapshot = await getDocs(q)
-				const trainingsData = treningsSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
+				const trainingsSnapshot = await getDocs(q)
+				const trainingsData = trainingsSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
 					docId: doc.id,
 					id: doc.data().id,
 					name: doc.data().name,

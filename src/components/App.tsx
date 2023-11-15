@@ -1,5 +1,3 @@
-// App.tsx
-import React from 'react'
 import { Container, Box } from '@radix-ui/themes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from '../pages/Root'
@@ -8,7 +6,7 @@ import ExcercisesBase from './ExcercisesBase'
 import Dashboard from './Dashboard'
 import Training from './Training'
 import Excercise from './Excercise'
-import { excercises } from './excercisesData' // Import the exercises array
+import { excercises } from './excercisesData'
 
 const App = () => {
 	const router = createBrowserRouter([
@@ -20,11 +18,11 @@ const App = () => {
 				{ path: 'pomiary', element: <Measures /> },
 				{ path: 'baza', element: <ExcercisesBase excercises={excercises} /> },
 				{
-					path: 'trening/:treningId',
+					path: 'training/:trainingId',
 					element: <Training />,
 				},
 				{
-					path: 'trening/:treningId/excercise/:excerciseId',
+					path: 'training/:trainingId/excercise/:excerciseId',
 					element: <Excercise />,
 				},
 			],

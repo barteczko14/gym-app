@@ -14,10 +14,6 @@ const AddExcerciseModal: React.FC<AddExcerciseModalProps> = ({
 	handleInputChange,
 	newExcerciseName,
 }) => {
-	const handleSave = (e: React.FormEvent) => {
-		e.preventDefault()
-	}
-
 	return (
 		<div className={classes.overlay}>
 			<div className={classes.modalContainer}>
@@ -25,7 +21,7 @@ const AddExcerciseModal: React.FC<AddExcerciseModalProps> = ({
 					<div className={classes.modalTitle}>
 						<h5>Dodaj ćwiczenie</h5>
 					</div>
-					<form onSubmit={handleSave}>
+					<form>
 						<div>
 							<input
 								className={classes.modalInput}

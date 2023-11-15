@@ -22,7 +22,6 @@ export default function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(0);
 
   React.useEffect(() => {
-    // Mapowanie ścieżki na odpowiednią wartość dla BottomNavigation
     const pathToValue: Record<string, number> = {
       '/': 0,
       '/pomiary': 1,
