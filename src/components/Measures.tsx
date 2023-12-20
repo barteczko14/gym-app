@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import './Measures.css'
+import styled from 'styled-components'
+import { Title } from '../styled'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import {
 	collection,
@@ -18,6 +19,48 @@ interface WeightData {
 	weight: number
 	date: number
 }
+
+const AddWeightBtn = styled.button`
+	margin: 10px;
+	padding: 8px 16px;
+	font-size: 16px;
+	background-color: #9c27b0;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: #7c2ca7;
+	}
+`
+const NewWeightContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	max-width: 300px;
+	margin: 20px auto;
+`
+const NewWeightLabel = styled.label`
+	font-size: 16px;
+	margin-bottom: 8px;
+`
+
+const NewWeightInput = styled.input`
+	padding: 8px;
+	margin-bottom: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+`
+
+const MeasuresContainer = styled.div`
+	display: block;
+	margin: 10px;
+	padding: 10px 0px;
+	background-color: #f4f4f4;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`
 
 const Measures: React.FC = () => {
 	const [weightData, setWeightData] = useState<WeightData[]>([])
@@ -61,9 +104,9 @@ const Measures: React.FC = () => {
 	}
 
 	return (
-		<div className='container'>
-			<h2 className='title'>Pomiary</h2>
-			<div className='measures-container'>
+		<>
+			<Title>Pomiary</Title>
+			<MeasuresContainer>
 				<ResponsiveContainer className='chart-container' width='95%' height={280}>
 					<LineChart data={weightData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
 						<CartesianGrid strokeDasharray='3 3' />
@@ -79,22 +122,15 @@ const Measures: React.FC = () => {
 						<Line type='monotone' dataKey='weight' stroke='#8884d8' activeDot={{ r: 8 }} />
 					</LineChart>
 				</ResponsiveContainer>
-				<div className='new-weight-container'>
-					<label className='new-weight-label'>Nowa Waga:</label>
-					<input
-						type='number'
-						value={newWeight}
-						onChange={e => setNewWeight(e.target.value)}
-						className='new-weight-input'
-					/>
-					<label className='new-weight-label'>Nowa Data:</label>
-					<input type='date' value={newDate} onChange={e => setNewDate(e.target.value)} className='new-weight-input' />
-					<button onClick={handleAddWeight} className='add-weight-button'>
-						Dodaj Wagę
-					</button>
-				</div>
-			</div>
-		</div>
+				<NewWeightContainer>
+					<NewWeightLabel>Nowa Waga:</NewWeightLabel>
+					<NewWeightInput type='number' value={newWeight} onChange={e => setNewWeight(e.target.value)} />
+					<NewWeightLabel>Nowa Data:</NewWeightLabel>
+					<NewWeightInput type='date' value={newDate} onChange={e => setNewDate(e.target.value)} />
+					<AddWeightBtn onClick={handleAddWeight}>Dodaj Wagę</AddWeightBtn>
+				</NewWeightContainer>
+			</MeasuresContainer>
+		</>
 	)
 }
 

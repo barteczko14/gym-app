@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { Title, FirstBtnsContainer, Container } from '../styled'
 import TrainingList from './TrainingList'
 import Fab from '@mui/material/Fab'
 import AddIcon from '@mui/icons-material/Add'
-import classes from './Dashboard.module.css'
 import AddTrainingModal from './AddTrainingModal'
 import DeleteTrainingModal from './DeleteTrainingModal'
 import {
@@ -14,7 +14,7 @@ import {
 	doc,
 	QueryDocumentSnapshot,
 	deleteDoc,
-	orderBy
+	orderBy,
 } from 'firebase/firestore'
 
 import { db } from '../firebase'
@@ -37,7 +37,7 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		const getTrainings = async () => {
-			const q = query(collectionRef,orderBy('name', 'asc'))
+			const q = query(collectionRef, orderBy('name', 'asc'))
 			try {
 				const trainingsSnapshot = await getDocs(q)
 				const trainingsData = trainingsSnapshot.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
@@ -120,12 +120,18 @@ const Dashboard = () => {
 	}
 
 	return (
-		<div className={classes.dashboard}>
-			<h2 className={classes.title}>Lista Treningów</h2>
-			<TrainingList trainings={trainings} onDelete={handleDelete} />
-			<Fab className={classes.addButton}>
-				<AddIcon onClick={handleShowAddTrainingModal} />
-			</Fab>
+		<>
+			<Container>
+				<Title>Lista Treningów</Title>
+				<FirstBtnsContainer>
+					<Fab color='secondary'>
+						<AddIcon onClick={handleShowAddTrainingModal} />
+					</Fab>
+				</FirstBtnsContainer>
+
+				<TrainingList trainings={trainings} onDelete={handleDelete} />
+			</Container>
+
 			{showAddTrainingModal && (
 				<AddTrainingModal
 					handleCloseAddTrainingModal={handleCloseAddTrainingModal}
@@ -140,7 +146,7 @@ const Dashboard = () => {
 					handleDeleteTraining={handleDeleteTrainingConfirmed}
 				/>
 			)}
-		</div>
+		</>
 	)
 }
 

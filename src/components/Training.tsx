@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Fab from '@mui/material/Fab'
+import { Title, MainBtnsContainer, Container } from '../styled'
 import AddIcon from '@mui/icons-material/Add'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import classes from './Dashboard.module.css'
 import AddExcerciseModal from './AddExcerciseModal'
 import { Link } from 'react-router-dom'
 import ExcerciseList from './ExcerciseList'
@@ -53,7 +53,6 @@ const Training = () => {
 					})) as ExcerciseData[]
 
 				setExcercises(excercisesData)
-				
 			} catch (err) {
 				console.error('Błąd podczas pobierania ćwiczeń:', err)
 			}
@@ -131,15 +130,22 @@ const Training = () => {
 	}
 
 	return (
-		<div className={classes.dashboard}>
-			<h2 className={classes.title}>Lista Ćwiczeń</h2>
-			<Link className={classes.backBtn} to={`/`}>
-				<ArrowBackIcon fontSize="large"/>
-			</Link>
-			<ExcerciseList excercises={excercises} onDelete={handleDelete} />
-			<Fab className={classes.addButton}>
-				<AddIcon onClick={handleShowAddExcerciseModal} />
-			</Fab>
+		<>
+			<Container>
+				<Title>Lista Ćwiczeń</Title>
+				<MainBtnsContainer>
+					<Link to={`/`}>
+						<Fab color='secondary'>
+							<ArrowBackIcon />
+						</Fab>
+					</Link>
+					<Fab color='secondary'>
+						<AddIcon onClick={handleShowAddExcerciseModal} />
+					</Fab>
+				</MainBtnsContainer>
+
+				<ExcerciseList excercises={excercises} onDelete={handleDelete} />
+			</Container>
 			{showAddExcerciseModal && (
 				<AddExcerciseModal
 					handleCloseAddExcerciseModal={handleCloseAddExcerciseModal}
@@ -154,7 +160,7 @@ const Training = () => {
 					handleDeleteExcercise={handleDeleteExcerciseConfirmed}
 				/>
 			)}
-		</div>
+		</>
 	)
 }
 

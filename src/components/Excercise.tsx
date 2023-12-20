@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Fab from '@mui/material/Fab'
+import { Title, MainBtnsContainer, Container } from '../styled'
 import AddIcon from '@mui/icons-material/Add'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import classes from './Dashboard.module.css'
 import DeleteSerieModal from './DeleteSerieModal'
 import AddSerieModal from './AddSerieModal'
 import { Link } from 'react-router-dom'
@@ -19,7 +19,7 @@ import {
 	QueryDocumentSnapshot,
 	deleteDoc,
 	updateDoc,
-	orderBy
+	orderBy,
 } from 'firebase/firestore'
 
 import { db } from '../firebase'
@@ -50,7 +50,7 @@ const Excercise: React.FC = () => {
 	useEffect(() => {
 		const getSeries = async (trainingId: number, excerciseId: number) => {
 			try {
-				const q = query(collectionRef,orderBy('name', 'asc'))
+				const q = query(collectionRef, orderBy('name', 'asc'))
 				const seriesSnapshot = await getDocs(q)
 
 				const seriesData = seriesSnapshot.docs
@@ -202,15 +202,22 @@ const Excercise: React.FC = () => {
 	}
 
 	return (
-		<div className={classes.dashboard}>
-			<h2 className={classes.title}>Serie</h2>
-			<Link className={classes.backBtn} to={`/training/${params.trainingId}`}>
-				<ArrowBackIcon fontSize='large' />
-			</Link>
-			<SeriesList series={series} onDelete={handleDelete} onEdit={handleEdit} />
-			<Fab className={classes.addButton}>
-				<AddIcon onClick={handleShowAddSerieModal} />
-			</Fab>
+		<>
+			<Container>
+				<Title>Serie</Title>
+				<MainBtnsContainer>
+					<Link to={`/training/${params.trainingId}`}>
+						<Fab color='secondary'>
+							<ArrowBackIcon />
+						</Fab>
+					</Link>
+					<Fab color='secondary'>
+						<AddIcon onClick={handleShowAddSerieModal} />
+					</Fab>
+				</MainBtnsContainer>
+
+				<SeriesList series={series} onDelete={handleDelete} onEdit={handleEdit} />
+			</Container>
 			{showAddSerieModal && (
 				<AddSerieModal
 					handleCloseAddSerieModal={handleCloseAddSerieModal}
@@ -238,7 +245,7 @@ const Excercise: React.FC = () => {
 					oldWeight={newWeight}
 				/>
 			)}
-		</div>
+		</>
 	)
 }
 
