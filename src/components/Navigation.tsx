@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import FitnessCenterOutlinedIcon from '@mui/icons-material/FitnessCenterOutlined'
 import ScaleOutlinedIcon from '@mui/icons-material/ScaleOutlined'
 import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined'
@@ -38,24 +38,29 @@ const NavigationLink = styled(NavLink)`
 	}
 `
 
-const SimpleBottomNavigation = () => {
+const BottomNavigation = () => {
+	const location = useLocation()
+
 	return (
 		<NavigationContainer>
 			<NavigationList>
 				<NavigationItem>
-					<NavigationLink to='/' end>
+					<NavigationLink
+						to='/'
+						end
+						className={location.pathname === '/' || location.pathname.startsWith('/training') ? 'active' : ''}>
 						<FitnessCenterOutlinedIcon />
 						<span>Trening</span>
 					</NavigationLink>
 				</NavigationItem>
 				<NavigationItem>
-					<NavigationLink to='/pomiary'>
+					<NavigationLink to='/pomiary' className={location.pathname.startsWith('/pomiary') ? 'active' : ''}>
 						<ScaleOutlinedIcon />
 						<span>Pomiary</span>
 					</NavigationLink>
 				</NavigationItem>
 				<NavigationItem>
-					<NavigationLink to='/baza'>
+					<NavigationLink to='/baza' className={location.pathname.startsWith('/baza') ? 'active' : ''}>
 						<StorageOutlinedIcon />
 						<span>Baza ćwiczeń</span>
 					</NavigationLink>
@@ -65,4 +70,4 @@ const SimpleBottomNavigation = () => {
 	)
 }
 
-export default SimpleBottomNavigation
+export default BottomNavigation

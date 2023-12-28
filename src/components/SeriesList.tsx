@@ -1,8 +1,9 @@
 import React from 'react'
+import styled from 'styled-components'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
 import Fab from '@mui/material/Fab'
-import classes from './TrainingList.module.css'
+import { Ul, Li } from '../styled'
 
 interface SerieData {
 	id: number
@@ -20,27 +21,37 @@ interface SerieListProps {
 	onEdit: (id: number, docId: string) => void
 }
 
+const Buttons = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+`
+const StyledText = styled.span`
+	font-weight: 600;
+`
+
 const ExcerciseList: React.FC<SerieListProps> = ({ series, onDelete, onEdit }) => {
 	return (
-		<ul className={classes.ul}>
+		<Ul>
 			{series.map(serie => (
-				<li className={classes.li} key={serie.id}>
+				<Li key={serie.id}>
 					<div>
-						<div className={classes.textBold}>{serie.name}</div>
+						<StyledText>{serie.name}</StyledText>
 						<div>Waga: {serie.weight} kg</div>
 						<div>Liczba powtórzeń: {serie.reps}</div>
 					</div>
-					<div className={classes.buttons}>
-						<Fab size='small' className={classes.removeButton}>
+					<Buttons>
+						<Fab size='small'>
 							<EditIcon onClick={() => onEdit(serie.id, serie.docId)} />
 						</Fab>
-						<Fab size='small' className={classes.removeButton}>
+						<Fab size='small'>
 							<RemoveIcon onClick={() => onDelete(serie.id, serie.docId)} />
 						</Fab>
-					</div>
-				</li>
+					</Buttons>
+				</Li>
 			))}
-		</ul>
+		</Ul>
 	)
 }
 

@@ -1,13 +1,13 @@
 import { Outlet } from 'react-router-dom'
-import Navigation from '../components/Navigation'
+import BottomNavigation from '../components/Navigation'
 
-function RootLayout(props: any) {
+function RootLayout() {
 	return (
 		<>
 			<main>
 				<Outlet></Outlet>
 			</main>
-			<Navigation></Navigation>
+			<BottomNavigation></BottomNavigation>
 		</>
 	)
 }
