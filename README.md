@@ -4,6 +4,8 @@ This project, developed using React, Firebase, and Style Components, is a compre
 
 ### Check app at: https://gym-app-bk.netlify.app/
 
-![obraz](https://github.com/barteczko14/cars-app-dev/blob/main/cars_app_1.png)
+![obraz](https://github.com/barteczko14/gym-app/blob/main/gym_app_1.png)
 
+![obraz](https://github.com/barteczko14/gym-app/blob/main/gym_app_2.png)
 
+![obraz](https://github.com/barteczko14/gym-app/blob/main/gym_app_3.png)
