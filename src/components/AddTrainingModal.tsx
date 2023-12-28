@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './Modal.module.css'
+import { Overlay, ModalContainer, ModalContent, ModalTitle, ModalInput, ModalButtonGroup, ModalButton } from '../styled'
 
 interface AddTrainingModalProps {
 	handleCloseAddTrainingModal: () => void
@@ -15,34 +15,33 @@ const AddTrainingModal: React.FC<AddTrainingModalProps> = ({
 	newTrainingName,
 }) => {
 	return (
-		<div className={classes.overlay}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Dodaj Trening</h5>
-					</div>
+					</ModalTitle>
 					<form>
 						<div>
-							<input
-								className={classes.modalInput}
+							<ModalInput
 								type='text'
 								placeholder='Dodaj Trening'
 								value={newTrainingName}
 								onChange={handleInputChange}
 							/>
 						</div>
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseAddTrainingModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseAddTrainingModal} type='button'>
 								Zamknij
-							</button>
-							<button onClick={handleAddTraining} className={classes.modalButton} type='submit'>
+							</ModalButton>
+							<ModalButton onClick={handleAddTraining} type='submit'>
 								Dodaj
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</form>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 

@@ -21,7 +21,7 @@ interface SerieListProps {
 	onEdit: (id: number, docId: string) => void
 }
 
-const Buttons = styled.div`
+const StyledButtons = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -41,14 +41,14 @@ const ExcerciseList: React.FC<SerieListProps> = ({ series, onDelete, onEdit }) =
 						<div>Waga: {serie.weight} kg</div>
 						<div>Liczba powtórzeń: {serie.reps}</div>
 					</div>
-					<Buttons>
+					<StyledButtons>
 						<Fab size='small'>
 							<EditIcon onClick={() => onEdit(serie.id, serie.docId)} />
 						</Fab>
 						<Fab size='small'>
 							<RemoveIcon onClick={() => onDelete(serie.id, serie.docId)} />
 						</Fab>
-					</Buttons>
+					</StyledButtons>
 				</Li>
 			))}
 		</Ul>

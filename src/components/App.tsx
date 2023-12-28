@@ -6,7 +6,7 @@ import ExcercisesBase from './ExcercisesBase'
 import Dashboard from './Dashboard'
 import Training from './Training'
 import Excercise from './Excercise'
-import { excercises } from './excercisesData'
+import { excercises } from '../excercisesData'
 
 const App = () => {
 	const router = createBrowserRouter([

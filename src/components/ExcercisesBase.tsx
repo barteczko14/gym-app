@@ -42,9 +42,9 @@ const ExcercisesBase: React.FC<ExcercisesBaseProps> = ({ excercises }) => {
 	return (
 		<>
 			<Title>Baza ćwiczeń</Title>
-			<Ol style={{ '--length': excercises.length } as React.CSSProperties} role='list'>
-				{excercises.map((exercise, index) => (
-					<ExercisesBaseLi key={exercise.id} style={{ '--i': index + 1 } as React.CSSProperties}>
+			<Ol>
+				{excercises.map(exercise => (
+					<ExercisesBaseLi key={exercise.id}>
 						<Name>{exercise.name}</Name>
 						<p>{exercise.description}</p>
 					</ExercisesBaseLi>

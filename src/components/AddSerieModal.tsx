@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './Modal.module.css'
+import { Overlay, ModalContainer, ModalContent, ModalTitle, ModalInput, ModalButtonGroup, ModalButton } from '../styled'
 
 interface AddSerieModalProps {
 	handleCloseAddSerieModal: () => void
@@ -17,40 +17,35 @@ const AddSerieModal: React.FC<AddSerieModalProps> = ({
 	handleWeightChange,
 }) => {
 	return (
-		<div className={classes.overlay}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Dodaj serię</h5>
-					</div>
+					</ModalTitle>
 					<form>
 						<div>
-							<input className={classes.modalInput} type='text' placeholder='Nazwa' onChange={handleNewSerieChange} />
+							<ModalInput type='text' placeholder='Nazwa' onChange={handleNewSerieChange} />
 						</div>
 						<div>
-							<input className={classes.modalInput} type='number' placeholder='Waga' onChange={handleWeightChange} />
+							<ModalInput type='number' placeholder='Waga' onChange={handleWeightChange} />
 						</div>
 						<div>
-							<input
-								className={classes.modalInput}
-								type='number'
-								placeholder='Liczba powtórzeń'
-								onChange={handleRepsChange}
-							/>
+							<ModalInput type='number' placeholder='Liczba powtórzeń' onChange={handleRepsChange} />
 						</div>
 
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseAddSerieModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseAddSerieModal} type='button'>
 								Zamknij
-							</button>
-							<button onClick={handleAddSerie} className={classes.modalButton} type='submit'>
+							</ModalButton>
+							<ModalButton onClick={handleAddSerie} type='submit'>
 								Dodaj
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</form>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 

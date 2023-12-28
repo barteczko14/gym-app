@@ -1,36 +1,47 @@
 import React from 'react'
-import classes from './Modal.module.css'
+import {
+	Overlay,
+	ModalContainer,
+	ModalContent,
+	ModalTitle,
+	ModalCloseButton,
+	ModalButtonGroup,
+	ModalButton,
+} from '../styled'
 
 interface DeleteConfirmationModalProps {
 	handleCloseAddTrainingModal: () => void
 	handleDeleteTraining: () => void
 }
 
-const DeleteTraining: React.FC<DeleteConfirmationModalProps> = ({ handleCloseAddTrainingModal, handleDeleteTraining }) => {
+const DeleteTraining: React.FC<DeleteConfirmationModalProps> = ({
+	handleCloseAddTrainingModal,
+	handleDeleteTraining,
+}) => {
 	return (
-		<div className={classes.overlay} onClick={handleCloseAddTrainingModal}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay onClick={handleCloseAddTrainingModal}>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Potwierdź Usunięcie</h5>
-						<button className={classes.modalCloseButton} onClick={handleCloseAddTrainingModal} type='button'>
+						<ModalCloseButton onClick={handleCloseAddTrainingModal} type='button'>
 							X
-						</button>
-					</div>
-					<div className={classes.modalForm}>
+						</ModalCloseButton>
+					</ModalTitle>
+					<div>
 						<div>Czy na pewno chcesz usunąć ten trening?</div>
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseAddTrainingModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseAddTrainingModal} type='button'>
 								Anuluj
-							</button>
-							<button className={classes.modalButton} onClick={handleDeleteTraining} type='button'>
+							</ModalButton>
+							<ModalButton onClick={handleDeleteTraining} type='button'>
 								Usuń
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</div>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 

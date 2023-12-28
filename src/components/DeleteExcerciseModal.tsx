@@ -1,36 +1,47 @@
 import React from 'react'
-import classes from './Modal.module.css'
+import {
+	Overlay,
+	ModalContainer,
+	ModalContent,
+	ModalTitle,
+	ModalCloseButton,
+	ModalButtonGroup,
+	ModalButton,
+} from '../styled'
 
 interface DeleteExcerciseModalProps {
 	handleCloseAddExcerciseModal: () => void
 	handleDeleteExcercise: () => void
 }
 
-const DeleteExcerciseModal: React.FC<DeleteExcerciseModalProps> = ({ handleCloseAddExcerciseModal, handleDeleteExcercise }) => {
+const DeleteExcerciseModal: React.FC<DeleteExcerciseModalProps> = ({
+	handleCloseAddExcerciseModal,
+	handleDeleteExcercise,
+}) => {
 	return (
-		<div className={classes.overlay} onClick={handleCloseAddExcerciseModal}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay onClick={handleCloseAddExcerciseModal}>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Potwierdź Usunięcie</h5>
-						<button className={classes.modalCloseButton} onClick={handleCloseAddExcerciseModal} type='button'>
+						<ModalCloseButton onClick={handleCloseAddExcerciseModal} type='button'>
 							X
-						</button>
-					</div>
-					<div className={classes.modalForm}>
+						</ModalCloseButton>
+					</ModalTitle>
+					<div>
 						<div>Czy na pewno chcesz usunąć to ćwiczenie?</div>
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseAddExcerciseModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseAddExcerciseModal} type='button'>
 								Anuluj
-							</button>
-							<button className={classes.modalButton} onClick={handleDeleteExcercise} type='button'>
+							</ModalButton>
+							<ModalButton onClick={handleDeleteExcercise} type='button'>
 								Usuń
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</div>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 

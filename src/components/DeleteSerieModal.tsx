@@ -1,5 +1,13 @@
 import React from 'react'
-import classes from './Modal.module.css'
+import {
+	ModalContainer,
+	Overlay,
+	ModalContent,
+	ModalTitle,
+	ModalCloseButton,
+	ModalButtonGroup,
+	ModalButton,
+} from '../styled'
 
 interface DeleteSerieModalProps {
 	handleCloseAddSerieModal: () => void
@@ -8,29 +16,29 @@ interface DeleteSerieModalProps {
 
 const DeleteSerieModal: React.FC<DeleteSerieModalProps> = ({ handleCloseAddSerieModal, handleDeleteSerie }) => {
 	return (
-		<div className={classes.overlay} onClick={handleCloseAddSerieModal}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay onClick={handleCloseAddSerieModal}>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Potwierdź Usunięcie</h5>
-						<button className={classes.modalCloseButton} onClick={handleCloseAddSerieModal} type='button'>
+						<ModalCloseButton onClick={handleCloseAddSerieModal} type='button'>
 							X
-						</button>
-					</div>
-					<div className={classes.modalForm}>
+						</ModalCloseButton>
+					</ModalTitle>
+					<div>
 						<div>Czy na pewno chcesz usunąć tą serię?</div>
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseAddSerieModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseAddSerieModal} type='button'>
 								Anuluj
-							</button>
-							<button className={classes.modalButton} onClick={handleDeleteSerie} type='button'>
+							</ModalButton>
+							<ModalButton onClick={handleDeleteSerie} type='button'>
 								Usuń
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</div>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 

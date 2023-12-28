@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import classes from './Modal.module.css'
+import { Overlay, ModalContainer, ModalContent, ModalTitle, ModalInput, ModalButtonGroup, ModalButton } from '../styled'
 
 interface EditSerieModalProps {
 	handleCloseEditSerieModal: () => void
@@ -37,18 +37,17 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 	}
 
 	return (
-		<div className={classes.overlay}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Edytuj serię</h5>
-					</div>
+					</ModalTitle>
 					<form onSubmit={handleSave}>
 						<div>
 							<label htmlFor='serieName'>Nazwa:</label>
-							<input
+							<ModalInput
 								id='serieName'
-								className={classes.modalInput}
 								type='text'
 								placeholder='Nazwa'
 								value={editedSerieName}
@@ -60,9 +59,8 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 						</div>
 						<div>
 							<label htmlFor='serieWeight'>Waga:</label>
-							<input
+							<ModalInput
 								id='serieWeight'
-								className={classes.modalInput}
 								type='number'
 								placeholder='Waga'
 								value={editedWeight}
@@ -75,9 +73,8 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 						</div>
 						<div>
 							<label htmlFor='serieReps'>Liczba powtórzeń:</label>
-							<input
+							<ModalInput
 								id='serieReps'
-								className={classes.modalInput}
 								type='number'
 								placeholder='Liczba powtórzeń'
 								value={editedReps}
@@ -89,18 +86,18 @@ const EditSerieModal: React.FC<EditSerieModalProps> = ({
 							/>
 						</div>
 
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseEditSerieModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseEditSerieModal} type='button'>
 								Zamknij
-							</button>
-							<button onClick={handleEditSerie} className={classes.modalButton} type='submit'>
+							</ModalButton>
+							<ModalButton onClick={handleEditSerie} type='submit'>
 								Edytuj
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</form>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 

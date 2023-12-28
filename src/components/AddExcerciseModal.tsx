@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './Modal.module.css'
+import { Overlay, ModalContainer, ModalContent, ModalTitle, ModalInput, ModalButtonGroup, ModalButton } from '../styled'
 
 interface AddExcerciseModalProps {
 	handleCloseAddExcerciseModal: () => void
@@ -15,34 +15,33 @@ const AddExcerciseModal: React.FC<AddExcerciseModalProps> = ({
 	newExcerciseName,
 }) => {
 	return (
-		<div className={classes.overlay}>
-			<div className={classes.modalContainer}>
-				<div className={classes.modalContent}>
-					<div className={classes.modalTitle}>
+		<Overlay>
+			<ModalContainer>
+				<ModalContent>
+					<ModalTitle>
 						<h5>Dodaj ćwiczenie</h5>
-					</div>
+					</ModalTitle>
 					<form>
 						<div>
-							<input
-								className={classes.modalInput}
+							<ModalInput
 								type='text'
 								placeholder='Dodaj ćwiczenie'
 								value={newExcerciseName}
 								onChange={handleInputChange}
 							/>
 						</div>
-						<div className={classes.modalButtonGroup}>
-							<button className={classes.modalButton} onClick={handleCloseAddExcerciseModal} type='button'>
+						<ModalButtonGroup>
+							<ModalButton onClick={handleCloseAddExcerciseModal} type='button'>
 								Zamknij
-							</button>
-							<button onClick={handleAddExcercise} className={classes.modalButton} type='submit'>
+							</ModalButton>
+							<ModalButton onClick={handleAddExcercise} type='submit'>
 								Dodaj
-							</button>
-						</div>
+							</ModalButton>
+						</ModalButtonGroup>
 					</form>
-				</div>
-			</div>
-		</div>
+				</ModalContent>
+			</ModalContainer>
+		</Overlay>
 	)
 }
 
